@@ -1,4 +1,4 @@
-\# Day04 - LEFT JOIN
+# Day04 - LEFT JOIN
 
 
 
