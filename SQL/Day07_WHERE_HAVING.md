@@ -1,40 +1,38 @@
-\# Day07 - WHERE \& HAVING
+# Day07 - WHERE \& HAVING
 
 
 
 > 📅 Study Date : 2026.07.16
 
->
-
 > 📖 Topic : WHERE \& HAVING
 
 
 
-\---
+---
 
 
 
-\# 📌 학습 목표
+# 📌 학습 목표
 
 
 
-\- WHERE와 HAVING의 차이를 이해한다.
+- WHERE와 HAVING의 차이를 이해한다.
 
-\- GROUP BY와 함께 HAVING을 사용할 수 있다.
+- GROUP BY와 함께 HAVING을 사용할 수 있다.
 
-\- SQL 실행 순서를 이해한다.
-
-
-
-\---
+- SQL 실행 순서를 이해한다.
 
 
 
-\# 📚 핵심 문법
+---
 
 
 
-\## 1. WHERE
+# 📚 핵심 문법
+
+
+
+## 1. WHERE
 
 
 
@@ -44,7 +42,7 @@
 
 ```sql
 
-SELECT \*
+SELECT *
 
 FROM employees
 
@@ -54,11 +52,11 @@ WHERE salary >= 4000;
 
 
 
-\---
+---
 
 
 
-\## 2. HAVING
+## 2. HAVING
 
 
 
@@ -70,7 +68,7 @@ GROUP BY 이후 그룹(Group)에 조건을 적용한다.
 
 SELECT department,
 
-&#x20;      AVG(salary) AS avg\_salary
+&x20;      AVG(salary) AS avg_salary
 
 FROM employees
 
@@ -82,11 +80,11 @@ HAVING AVG(salary) >= 4500;
 
 
 
-\---
+---
 
 
 
-\## 3. WHERE + GROUP BY + HAVING
+## 3. WHERE + GROUP BY + HAVING
 
 
 
@@ -94,7 +92,7 @@ HAVING AVG(salary) >= 4500;
 
 SELECT department,
 
-&#x20;      AVG(salary) AS avg\_salary
+&#x20;      AVG(salary) AS avg_salary
 
 FROM employees
 
@@ -108,11 +106,11 @@ HAVING AVG(salary) >= 5000;
 
 
 
-\---
+---
 
 
 
-\# 💼 실무 예시
+# 💼 실무 예시
 
 
 
@@ -120,9 +118,9 @@ HAVING AVG(salary) >= 5000;
 
 SELECT department,
 
-&#x20;      COUNT(\*) AS employee\_count,
+&#x20;      COUNT(*) AS employee_count,
 
-&#x20;      AVG(salary) AS avg\_salary
+&#x20;      AVG(salary) AS avg_salary
 
 FROM employees
 
@@ -140,73 +138,73 @@ HAVING AVG(salary) >= 4500;
 
 
 
-\---
+---
 
 
 
-\# 🎯 핵심 정리
+# 🎯 핵심 정리
 
 
 
-\- WHERE는 행(Row)을 필터링한다.
+- WHERE는 행(Row)을 필터링한다.
 
-\- HAVING은 그룹(Group)을 필터링한다.
+- HAVING은 그룹(Group)을 필터링한다.
 
-\- HAVING은 GROUP BY와 함께 사용한다.
+- HAVING은 GROUP BY와 함께 사용한다.
 
-\- SQL 실행 순서를 이해하면 문법이 훨씬 쉬워진다.
-
-
-
-\---
+- SQL 실행 순서를 이해하면 문법이 훨씬 쉬워진다.
 
 
 
-\# 🧠 오늘 배운 개념
+---
 
 
 
-\- WHERE
-
-\- GROUP BY
-
-\- HAVING
-
-\- AVG()
-
-\- COUNT()
-
-\- SQL 실행 순서
+# 🧠 오늘 배운 개념
 
 
 
-\---
+- WHERE
+
+- GROUP BY
+
+- HAVING
+
+- AVG()
+
+- COUNT()
+
+- SQL 실행 순서
 
 
 
-\# 📝 SQL 실행 순서
+---
 
 
 
-1\. FROM
-
-2\. WHERE
-
-3\. GROUP BY
-
-4\. HAVING
-
-5\. SELECT
-
-6\. ORDER BY
+# 📝 SQL 실행 순서
 
 
 
-\---
+1. FROM
+
+2. WHERE
+
+3. GROUP BY
+
+4. HAVING
+
+5. SELECT
+
+6. ORDER BY
 
 
 
-\# 🎯 한 줄 정리
+---
+
+
+
+# 🎯 한 줄 정리
 
 
 
