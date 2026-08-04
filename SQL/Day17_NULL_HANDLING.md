@@ -1,6 +1,6 @@
 # Day17 - NULL Handling
 
-> 📅 Study Date : 2026.08.04
+> 📅 Study Date : 2026.07.25
 >
 > 📖 Topic : SQL NULL Handling (IFNULL & COALESCE)
 
