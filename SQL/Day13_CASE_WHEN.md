@@ -1,6 +1,6 @@
 # Day13 - CASE WHEN
 
-> 📅 Study Date : 2026.08.04
+> 📅 Study Date : 2026.07.22
 >
 > 📖 Topic : SQL CASE WHEN
 

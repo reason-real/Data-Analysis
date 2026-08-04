@@ -1,6 +1,6 @@
 # Day14 - Date Functions
 
-> 📅 Study Date : 2026.08.04
+> 📅 Study Date : 2026.07.23
 >
 > 📖 Topic : SQL Date Functions
 
