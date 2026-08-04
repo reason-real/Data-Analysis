@@ -1,6 +1,6 @@
 # Day16 - UNION
 
-> 📅 Study Date : 2026.08.04
+> 📅 Study Date : 2026.07.25
 >
 > 📖 Topic : SQL UNION & UNION ALL
 
