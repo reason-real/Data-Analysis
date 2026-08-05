@@ -90,9 +90,7 @@ HAVING AVG(salary) >= 4500;
 
 ```sql
 
-SELECT department,
-
-&#x20;      AVG(salary) AS avg_salary
+SELECT department, AVG(salary) AS avg_salary
 
 FROM employees
 
@@ -116,11 +114,7 @@ HAVING AVG(salary) >= 5000;
 
 ```sql
 
-SELECT department,
-
-&#x20;      COUNT(*) AS employee_count,
-
-&#x20;      AVG(salary) AS avg_salary
+SELECT department,COUNT(*) AS employee_count, AVG(salary) AS avg_salary
 
 FROM employees
 

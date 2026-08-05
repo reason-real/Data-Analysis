@@ -40,11 +40,7 @@
 
 ```sql
 
-SELECT department,
-
-&#x20;      COUNT(*) AS employee_count,
-
-&#x20;      AVG(salary) AS avg_salary
+SELECT department, COUNT(*) AS employee_count, AVG(salary) AS avg_salary
 
 FROM employees
 
@@ -64,11 +60,7 @@ GROUP BY department;
 
 ```sql
 
-SELECT department,
-
-&#x20;      MAX(salary) AS max_salary,
-
-&#x20;      MIN(salary) AS min_salary
+SELECT department, MAX(salary) AS max_salary, MIN(salary) AS min_salary
 
 FROM employees
 
@@ -88,9 +80,7 @@ GROUP BY department;
 
 ```sql
 
-SELECT department,
-
-&#x20;      AVG(salary) AS avg_salary
+SELECT department, AVG(salary) AS avg_salary
 
 FROM employees
 
@@ -112,11 +102,7 @@ ORDER BY avg_salary DESC;
 
 ```sql
 
-SELECT department,
-
-&#x20;      COUNT(*) AS employee_count,
-
-&#x20;      AVG(salary) AS avg_salary
+SELECT department, COUNT(*) AS employee_count, AVG(salary) AS avg_salary
 
 FROM employees
 
@@ -138,11 +124,7 @@ GROUP BY department;
 
 ```sql
 
-SELECT department,
-
-&#x20;      COUNT(*) AS employee_count,
-
-&#x20;      AVG(salary) AS avg_salary
+SELECT department, COUNT(*) AS employee_count, AVG(salary) AS avg_salary
 
 FROM employees
 
