@@ -1,4 +1,4 @@
-\# Day22 - CTE (Common Table Expression)
+# Day22 - CTE (Common Table Expression)
 
 
 
@@ -6,11 +6,11 @@
 
 
 
-\## 📖 Overview
+## 📖 Overview
 
 
 
-Today I learned \*\*CTE (Common Table Expression)\*\*, a SQL feature that improves query readability by defining temporary result sets.
+Today I learned **CTE (Common Table Expression)**, a SQL feature that improves query readability by defining temporary result sets.
 
 
 
@@ -18,15 +18,15 @@ CTEs are especially useful when working with complex queries that contain multip
 
 
 
-\---
+---
 
 
 
-\## 📚 What I Learned
+## 📚 What I Learned
 
 
 
-\### What is a CTE?
+### What is a CTE?
 
 
 
@@ -44,7 +44,7 @@ Basic syntax:
 
 ```sql
 
-WITH cte\_name AS
+WITH cte_name AS
 
 (
 
@@ -54,33 +54,33 @@ WITH cte\_name AS
 
 
 
-SELECT \*
+SELECT *
 
-FROM cte\_name;
+FROM cte_name;
 
 ```
 
 
 
-\---
+---
 
 
 
-\## 💻 Practice
+## 💻 Practice
 
 
 
-\### Example 1. Create a CTE for average salary
+### Example 1. Create a CTE for average salary
 
 
 
 ```sql
 
-WITH avg\_salary AS
+WITH avg_salary AS
 
 (
 
-&#x20;   SELECT AVG(salary) AS avg\_salary
+&#x20;   SELECT AVG(salary) AS avg_salary
 
 &#x20;   FROM employees
 
@@ -88,29 +88,29 @@ WITH avg\_salary AS
 
 
 
-SELECT \*
+SELECT *
 
-FROM avg\_salary;
+FROM avg_salary;
 
 ```
 
 
 
-\---
+---
 
 
 
-\### Example 2. Find employees earning above the average salary
+### Example 2. Find employees earning above the average salary
 
 
 
 ```sql
 
-WITH avg\_salary AS
+WITH avg_salary AS
 
 (
 
-&#x20;   SELECT AVG(salary) AS avg\_sal
+&#x20;   SELECT AVG(salary) AS avg_sal
 
 &#x20;   FROM employees
 
@@ -126,25 +126,25 @@ SELECT
 
 FROM employees,
 
-&#x20;    avg\_salary
+&#x20;    avg_salary
 
-WHERE salary > avg\_sal;
+WHERE salary > avg_sal;
 
 ```
 
 
 
-\---
+---
 
 
 
-\### Example 3. Employees with salary greater than or equal to 5,000
+### Example 3. Employees with salary greater than or equal to 5,000
 
 
 
 ```sql
 
-WITH high\_salary AS
+WITH high_salary AS
 
 (
 
@@ -162,19 +162,19 @@ WITH high\_salary AS
 
 
 
-SELECT \*
+SELECT *
 
-FROM high\_salary;
+FROM high_salary;
 
 ```
 
 
 
-\---
+---
 
 
 
-\## 💼 Practical Use Case
+## 💼 Practical Use Case
 
 
 
@@ -186,11 +186,11 @@ Example workflow:
 
 
 
-\- Calculate campaign performance
+- Calculate campaign performance
 
-\- Filter high-performing campaigns
+- Filter high-performing campaigns
 
-\- Join with another dataset for reporting
+- Join with another dataset for reporting
 
 
 
@@ -198,29 +198,29 @@ Using CTEs makes each step easier to understand and maintain.
 
 
 
-\---
+---
 
 
 
-\## ✅ Key Takeaways
+## ✅ Key Takeaways
 
 
 
-\- Learned how to create a CTE using the `WITH` keyword.
+- Learned how to create a CTE using the `WITH` keyword.
 
-\- Understood that CTEs improve query readability.
+- Understood that CTEs improve query readability.
 
-\- Practiced replacing nested subqueries with CTEs.
+- Practiced replacing nested subqueries with CTEs.
 
-\- Learned that CTEs exist only during query execution and are not permanently stored.
-
-
-
-\---
+- Learned that CTEs exist only during query execution and are not permanently stored.
 
 
 
-\## 📌 Keywords
+---
+
+
+
+## 📌 Keywords
 
 
 
