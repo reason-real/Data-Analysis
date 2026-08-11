@@ -26,14 +26,16 @@
 
 플랫폼별 광고 성과를 비교하기 위해 `GROUP BY`와 집계 함수를 함께 사용할 수 있다.
 
-    SELECT
-        platform,
-        COUNT(*) AS campaign_count,
-        SUM(sessions) AS total_sessions,
-        SUM(key_events) AS total_key_events
-    FROM ga4_data
-    GROUP BY platform
-    ORDER BY total_key_events DESC;
+```sql
+SELECT
+    platform,
+    COUNT(*) AS campaign_count,
+    SUM(sessions) AS total_sessions,
+    SUM(key_events) AS total_key_events
+FROM ga4_data
+GROUP BY platform
+ORDER BY total_key_events DESC;
+```
 
 - `GROUP BY platform` → 플랫폼별로 데이터 그룹화
 - `COUNT(*)` → 데이터 개수 계산
@@ -49,14 +51,16 @@
 
 `WHERE`와 `HAVING`은 모두 조건을 적용하지만 적용되는 대상과 시점이 다르다.
 
-    SELECT
-        platform,
-        SUM(sessions) AS total_sessions,
-        SUM(key_events) AS total_key_events
-    FROM ga4_data
-    WHERE sessions >= 500
-    GROUP BY platform
-    HAVING SUM(key_events) >= 100;
+```sql
+SELECT
+    platform,
+    SUM(sessions) AS total_sessions,
+    SUM(key_events) AS total_key_events
+FROM ga4_data
+WHERE sessions >= 500
+GROUP BY platform
+HAVING SUM(key_events) >= 100;
+```
 
 `WHERE sessions >= 500`
 
@@ -68,17 +72,19 @@
 
 기본적인 분석 흐름:
 
-    FROM
-    ↓
-    WHERE
-    ↓
-    GROUP BY
-    ↓
-    HAVING
-    ↓
-    SELECT
-    ↓
-    ORDER BY
+```text
+FROM
+↓
+WHERE
+↓
+GROUP BY
+↓
+HAVING
+↓
+SELECT
+↓
+ORDER BY
+```
 
 ---
 
@@ -92,9 +98,11 @@
 
 동일한 값이 있어도 같은 순위를 부여하지 않는다.
 
-    ROW_NUMBER() OVER(
-        ORDER BY key_events DESC
-    )
+```sql
+ROW_NUMBER() OVER(
+    ORDER BY key_events DESC
+)
+```
 
 예:
 
@@ -106,9 +114,11 @@
 
 동일한 값에는 공동 순위를 부여하고, 공동 순위가 발생하면 다음 순위를 건너뛴다.
 
-    RANK() OVER(
-        ORDER BY key_events DESC
-    )
+```sql
+RANK() OVER(
+    ORDER BY key_events DESC
+)
+```
 
 예:
 
@@ -120,9 +130,11 @@
 
 동일한 값에는 공동 순위를 부여하지만 다음 순위를 건너뛰지 않는다.
 
-    DENSE_RANK() OVER(
-        ORDER BY key_events DESC
-    )
+```sql
+DENSE_RANK() OVER(
+    ORDER BY key_events DESC
+)
+```
 
 예:
 
@@ -138,13 +150,15 @@
 
 `key_events / sessions × 100`
 
-    SELECT
-        platform,
-        SUM(sessions) AS total_sessions,
-        SUM(key_events) AS total_key_events,
-        SUM(key_events) / SUM(sessions) * 100 AS key_event_rate
-    FROM ga4_data
-    GROUP BY platform;
+```sql
+SELECT
+    platform,
+    SUM(sessions) AS total_sessions,
+    SUM(key_events) AS total_key_events,
+    SUM(key_events) / SUM(sessions) * 100 AS key_event_rate
+FROM ga4_data
+GROUP BY platform;
+```
 
 중요한 점은 개별 캠페인의 이벤트율을 단순히 평균 내는 것과 전체 주요 이벤트를 전체 세션으로 나누는 것은 다를 수 있다는 것이다.
 
@@ -156,26 +170,28 @@
 
 플랫폼별 성과를 계산한 뒤 다시 순위를 매기려면 CTE를 활용하여 분석 단계를 나눌 수 있다.
 
-    WITH platform_performance AS
-    (
-        SELECT
-            platform,
-            SUM(sessions) AS total_sessions,
-            SUM(key_events) AS total_key_events,
-            SUM(key_events) / SUM(sessions) * 100 AS key_event_rate
-        FROM ga4_data
-        GROUP BY platform
-    )
-
+```sql
+WITH platform_performance AS
+(
     SELECT
         platform,
-        total_sessions,
-        total_key_events,
-        key_event_rate,
-        RANK() OVER(
-            ORDER BY key_event_rate DESC
-        ) AS platform_rank
-    FROM platform_performance;
+        SUM(sessions) AS total_sessions,
+        SUM(key_events) AS total_key_events,
+        SUM(key_events) / SUM(sessions) * 100 AS key_event_rate
+    FROM ga4_data
+    GROUP BY platform
+)
+
+SELECT
+    platform,
+    total_sessions,
+    total_key_events,
+    key_event_rate,
+    RANK() OVER(
+        ORDER BY key_event_rate DESC
+    ) AS platform_rank
+FROM platform_performance;
+```
 
 분석 흐름:
 
@@ -229,42 +245,42 @@ CTE를 활용하면 복잡한 분석을 여러 단계로 나누어 작성할 수
 
 `campaign_rank = 1` 추출
 
-예시:
-
-    WITH campaign_performance AS
-    (
-        SELECT
-            platform,
-            campaign,
-            sessions,
-            key_events,
-            key_events / sessions * 100 AS key_event_rate
-        FROM ga4_data
-    ),
-
-    ranked_campaigns AS
-    (
-        SELECT
-            platform,
-            campaign,
-            sessions,
-            key_events,
-            key_event_rate,
-            ROW_NUMBER() OVER(
-                PARTITION BY platform
-                ORDER BY key_event_rate DESC
-            ) AS campaign_rank
-        FROM campaign_performance
-    )
-
+```sql
+WITH campaign_performance AS
+(
     SELECT
         platform,
         campaign,
         sessions,
         key_events,
-        key_event_rate
-    FROM ranked_campaigns
-    WHERE campaign_rank = 1;
+        key_events / sessions * 100 AS key_event_rate
+    FROM ga4_data
+),
+
+ranked_campaigns AS
+(
+    SELECT
+        platform,
+        campaign,
+        sessions,
+        key_events,
+        key_event_rate,
+        ROW_NUMBER() OVER(
+            PARTITION BY platform
+            ORDER BY key_event_rate DESC
+        ) AS campaign_rank
+    FROM campaign_performance
+)
+
+SELECT
+    platform,
+    campaign,
+    sessions,
+    key_events,
+    key_event_rate
+FROM ranked_campaigns
+WHERE campaign_rank = 1;
+```
 
 `PARTITION BY platform`
 
@@ -360,33 +376,35 @@ CTE를 활용하면 복잡한 분석을 여러 단계로 나누어 작성할 수
 
 실제 퍼포먼스 마케팅 상황에서는 다음과 같은 흐름으로 분석할 수 있다.
 
-    원본 GA4 데이터
-    ↓
-    SELECT
-    ↓
-    필요한 데이터 필터링
-    ↓
-    WHERE
-    ↓
-    플랫폼 또는 캠페인별 집계
-    ↓
-    GROUP BY
-    ↓
-    SUM() / AVG() / COUNT()
-    ↓
-    주요 이벤트율 계산
-    ↓
-    CTE
-    ↓
-    PARTITION BY
-    ↓
-    ROW_NUMBER() / RANK()
-    ↓
-    1위 캠페인 추출
-    ↓
-    광고 성과 비교
-    ↓
-    의사결정
+```text
+원본 GA4 데이터
+↓
+SELECT
+↓
+필요한 데이터 필터링
+↓
+WHERE
+↓
+플랫폼 또는 캠페인별 집계
+↓
+GROUP BY
+↓
+SUM() / AVG() / COUNT()
+↓
+주요 이벤트율 계산
+↓
+CTE
+↓
+PARTITION BY
+↓
+ROW_NUMBER() / RANK()
+↓
+1위 캠페인 추출
+↓
+광고 성과 비교
+↓
+의사결정
+```
 
 ---
 
@@ -477,47 +495,49 @@ SQL 종합 분석
 
 ## 오늘 배운 핵심 정리
 
-    SELECT
-    → 필요한 데이터를 선택
+```text
+SELECT
+→ 필요한 데이터를 선택
 
-    FROM
-    → 데이터를 가져올 테이블 지정
+FROM
+→ 데이터를 가져올 테이블 지정
 
-    WHERE
-    → 그룹화 전 개별 데이터 필터링
+WHERE
+→ 그룹화 전 개별 데이터 필터링
 
-    GROUP BY
-    → 특정 기준으로 데이터 그룹화
+GROUP BY
+→ 특정 기준으로 데이터 그룹화
 
-    SUM() / AVG() / COUNT()
-    → 데이터 집계
+SUM() / AVG() / COUNT()
+→ 데이터 집계
 
-    HAVING
-    → 그룹화 및 집계 이후 조건 적용
+HAVING
+→ 그룹화 및 집계 이후 조건 적용
 
-    ORDER BY
-    → 결과 정렬
+ORDER BY
+→ 결과 정렬
 
-    CASE
-    → 조건에 따른 값 분류
+CASE
+→ 조건에 따른 값 분류
 
-    WITH
-    → CTE를 활용하여 분석 단계 분리
+WITH
+→ CTE를 활용하여 분석 단계 분리
 
-    OVER()
-    → Window Function 사용
+OVER()
+→ Window Function 사용
 
-    PARTITION BY
-    → 그룹별 Window Function 계산
+PARTITION BY
+→ 그룹별 Window Function 계산
 
-    ROW_NUMBER()
-    → 고유 순위 부여
+ROW_NUMBER()
+→ 고유 순위 부여
 
-    RANK()
-    → 공동 순위를 허용하는 순위 부여
+RANK()
+→ 공동 순위를 허용하는 순위 부여
 
-    DENSE_RANK()
-    → 공동 순위를 허용하면서 순위를 건너뛰지 않음
+DENSE_RANK()
+→ 공동 순위를 허용하면서 순위를 건너뛰지 않음
+```
 
 ---
 
