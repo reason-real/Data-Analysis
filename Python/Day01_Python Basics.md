@@ -1,4 +1,4 @@
-# Day31 - Python 기초 (print, 변수, 자료형)
+# Day1 - Python 기초 (print, 변수, 자료형)
 
 ## 📌 학습 목표
 
