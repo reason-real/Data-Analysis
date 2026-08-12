@@ -1,48 +1,96 @@
-# Day1 - Python Basics
+# \# Day11 - Python 기초
 
-# 1. print()
-print("Python Start!")
+# 
 
+# \# 1. print()
 
-# 2. Variables
-campaign = "민사_A"
-sessions = 1000
-key_events = 120
+# print("Python Start!")
 
+# 
 
-# 3. Print variables
-print(campaign)
-print(sessions)
-print(key_events)
+# 
 
+# \# 2. 변수
 
-# 4. Data Types
-rate = 12.5
-platform = "Naver"
-is_active = True
+# campaign = "민사\_A"
 
-print(type(sessions))
-print(type(rate))
-print(type(platform))
-print(type(is_active))
+# sessions = 1000
 
+# key\_events = 120
 
-# 5. Calculate key event rate
-key_event_rate = key_events / sessions * 100
+# 
 
-print(key_event_rate)
+# 
 
+# \# 3. 변수 출력
 
-# 6. Advertising data
-platform = "Naver"
-campaign = "민사_A"
-sessions = 1000
-key_events = 120
+# print(campaign)
 
-key_event_rate = key_events / sessions * 100
+# print(sessions)
 
-print("Platform:", platform)
-print("Campaign:", campaign)
-print("Sessions:", sessions)
-print("Key Events:", key_events)
-print("Key Event Rate:", key_event_rate)
+# print(key\_events)
+
+# 
+
+# 
+
+# \# 4. 자료형
+
+# rate = 12.5
+
+# platform = "Naver"
+
+# is\_active = True
+
+# 
+
+# print(type(sessions))
+
+# print(type(rate))
+
+# print(type(platform))
+
+# print(type(is\_active))
+
+# 
+
+# 
+
+# \# 5. 주요 이벤트율 계산
+
+# key\_event\_rate = key\_events / sessions \* 100
+
+# 
+
+# print(key\_event\_rate)
+
+# 
+
+# 
+
+# \# 6. 광고 데이터 활용
+
+# platform = "Naver"
+
+# campaign = "민사\_A"
+
+# sessions = 1000
+
+# key\_events = 120
+
+# 
+
+# key\_event\_rate = key\_events / sessions \* 100
+
+# 
+
+# print("플랫폼:", platform)
+
+# print("캠페인:", campaign)
+
+# print("세션 수:", sessions)
+
+# print("주요 이벤트 수:", key\_events)
+
+# print("주요 이벤트율:", key\_event\_rate)
+
