@@ -114,7 +114,7 @@ print(filtered_df)
 
 ---
 
-# 🏆 Day44 Challenge — 광고 데이터 분석가 관점
+# 🏆 Day02 Challenge — 광고 데이터 분석가 관점
 
 다음 광고 데이터를 분석하자.
 
