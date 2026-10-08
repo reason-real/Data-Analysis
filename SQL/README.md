@@ -1,44 +1,4 @@
-📊 Data Analysis Portfolio
+> 데이터 분석 역량을 강화하기 위해 SQL 및 Python(Pandas)을 일자별로 직접 학습하며 기록하는 저장소입니다.
 
-
-
-👋 안녕하세요.
-
-
-
-데이터 분석가를 목표로 SQL, Python, Pandas, 데이터 분석 프로젝트를 학습하며 기록하는 저장소입니다.
-
-
-
-📚 Skills
-
-\- SQL
-
-\- Python
-
-\- Pandas
-
-\- Data Analysis
-
-\- Git \& GitHub
-
-
-
-📂 Repository Structure
-
-SQL/
-
-Python/
-
-Pandas/
-
-Projects/
-
-Notes/
-
-
-
-🎯 Goal
-
-데이터 분석 직무 취업을 목표로 꾸준히 학습하고 프로젝트를 수행합니다.
+* 🔗 **[Google Colab Pandas 실습 폴더 바로가기](https://drive.google.com/drive/folders/1VFbjbB1MfHN3kqfBbbPwnsUPcxWURMbZ?usp=drive_link)**
 
